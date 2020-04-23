@@ -22,5 +22,18 @@ namespace TestNinja.UnitTests
             // Assert
             Assert.Equal("abc", errLogger.LastError);
         }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
+        public void Log_InvalidError_ThrowArgumentNullException(string error)
+        {
+            // Arrange
+            var errorLogger = new ErrorLogger();
+
+            // Act, Assert
+            Assert.Throws<ArgumentNullException>(() => errorLogger.Log(error));
+        }
     }
 }
