@@ -36,5 +36,18 @@ namespace TestNinja.UnitTests
             // Assert
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void GetOddNumbers_LimitGreaterThanZero_ReturnsOddNumbersFromZeroToLimit()
+        {
+            // Arrange
+            var math = new TestNinja.Fundamentals.Math();
+
+            // Act
+            var result = math.GetOddNumbers(5);
+
+            // Assert
+            Assert.Equal(new[] { 1, 3, 5 }, result);
+        }
     }
 }
