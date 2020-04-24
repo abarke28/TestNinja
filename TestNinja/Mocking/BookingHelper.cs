@@ -6,14 +6,15 @@ namespace TestNinja.Mocking
 {
     public static class BookingHelper
     {
-        public static string OverlappingBookingsExist(Booking booking)
+        public static string OverlappingBookingsExist(Booking booking, IUnitOfWork unitOfWork = null)
         {
+            IUnitOfWork _unitOfWork = unitOfWork ?? new UnitOfWork();
+
             if (booking.Status == "Cancelled")
                 return string.Empty;
 
-            var unitOfWork = new UnitOfWork();
             var bookings =
-                unitOfWork.Query<Booking>()
+                _unitOfWork.Query<Booking>()
                     .Where(
                         b => b.Id != booking.Id && b.Status != "Cancelled");
 
@@ -29,7 +30,12 @@ namespace TestNinja.Mocking
         }
     }
 
-    public class UnitOfWork
+    public interface IUnitOfWork
+    {
+        IQueryable<T> Query<T>();
+    }
+
+    public class UnitOfWork : IUnitOfWork
     {
         public IQueryable<T> Query<T>()
         {

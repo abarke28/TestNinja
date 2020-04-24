@@ -4,7 +4,7 @@ namespace TestNinja.Mocking
 {
     public class EmployeeController
     {
-        private EmployeeContext _db;
+        private readonly EmployeeContext _db;
 
         public EmployeeController()
         {
@@ -21,6 +21,7 @@ namespace TestNinja.Mocking
 
         private ActionResult RedirectToAction(string employees)
         {
+            System.Console.WriteLine(employees);
             return new RedirectResult();
         }
     }

@@ -100,6 +100,8 @@ namespace TestNinja.Mocking
     {
         public static void Show(string s, string housekeeperStatements, MessageBoxButtons ok)
         {
+
+            System.Diagnostics.Debug.WriteLine(s + housekeeperStatements + ok.ToString());
         }
     }
 
@@ -112,6 +114,8 @@ namespace TestNinja.Mocking
     {
         public DateForm(string statementDate, object endOfLastMonth)
         {
+
+            System.Diagnostics.Debug.WriteLine(statementDate + endOfLastMonth.ToString());
         }
 
         public DateTime Date { get; set; }
@@ -150,6 +154,8 @@ namespace TestNinja.Mocking
     {
         public HousekeeperStatementReport(int housekeeperOid, DateTime statementDate)
         {
+
+            System.Diagnostics.Debug.WriteLine(housekeeperOid.ToString()+statementDate.ToString());
         }
 
         public bool HasData { get; set; }
@@ -160,6 +166,8 @@ namespace TestNinja.Mocking
 
         public void ExportToPdf(string filename)
         {
+
+            System.Diagnostics.Debug.WriteLine(filename);
         }
     }
 }

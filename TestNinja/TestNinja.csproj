@@ -93,6 +93,7 @@
     <Compile Include="Mocking\VideoProcessedFilter.cs" />
     <Compile Include="Mocking\VideoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mocking\HouseKeeperHelper.cs"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
