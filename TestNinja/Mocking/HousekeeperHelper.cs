@@ -8,13 +8,15 @@ namespace TestNinja.Mocking
 {
     public static class HousekeeperHelper
     {
-        private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
+        private static IUnitOfWork _unitOfWork;
         private static IHouseKeeperUtilities _houseKeeperUtilities;
 
-        public static void SendStatementEmails(DateTime statementDate, IHouseKeeperUtilities houseKeeperUtilities = null)
+        public static bool SendStatementEmails(DateTime statementDate, IHouseKeeperUtilities houseKeeperUtilities = null, IUnitOfWork unitOfWork = null)
         {
             _houseKeeperUtilities = houseKeeperUtilities ?? new HouseKeeperUtilities();
-            var housekeepers = UnitOfWork.Query<Housekeeper>();
+            _unitOfWork = unitOfWork ?? new UnitOfWork();
+
+            var housekeepers = _unitOfWork.Query<Housekeeper>();
 
             foreach (var housekeeper in housekeepers)
             {
@@ -40,6 +42,7 @@ namespace TestNinja.Mocking
                         MessageBoxButtons.OK);
                 }
             }
+            return true;
         }
     }
 
